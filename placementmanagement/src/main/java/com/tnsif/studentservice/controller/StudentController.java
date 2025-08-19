@@ -10,22 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
+import com.tnsif.StudentserviceApplication.StudentserviceApplication;
 import com.tnsif.studentservice.entity.Student;
 import com.tnsif.studentservice.service.StudentService;
 
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
+
+    private final StudentserviceApplication studentserviceApplication;
 	private final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService,StudentserviceApplication studentserviceApplication) {
         this.studentService = studentService;
+        this.studentserviceApplication = studentserviceApplication;
     }
 
     // Get all students
     @GetMapping
     public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+        return (studentService).getAllStudents();
     }
 
     // Get student by ID
